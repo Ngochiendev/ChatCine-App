@@ -4,8 +4,6 @@ import 'package:chatcine/common/apis/apis.dart';
 import 'package:chatcine/common/entities/user.dart';
 import 'package:chatcine/common/routes/routes.dart';
 import 'package:chatcine/common/store/store.dart';
-import 'package:chatcine/common/utils/utils.dart';
-import 'package:chatcine/common/values/values.dart';
 import 'package:chatcine/common/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -13,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:developer' as developer;
 import 'index.dart';
 
@@ -68,26 +65,36 @@ class SignInController extends GetxController {
     }
   }
 
-  asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
     /*
       1. Save data in the database
       2. Save data in local
     */
-    // UserStore.to.setIsLogin = true;
     EasyLoading.show(
-      indicator: CircularProgressIndicator(),
+      indicator: const CircularProgressIndicator(),
       maskType: EasyLoadingMaskType.clear,
       dismissOnTap: true,
     );
-    var result = await UserAPI.Login(params: loginRequestEntity);
-    if (result == 0 || result == 1) {
-      await UserStore.to.saveProfile(result.data!);
-      EasyLoading.dismiss();
-    } else {
+
+    try {
+      var result = await UserAPI.Login(params: loginRequestEntity);
+      if (result != null) {
+        if (result.code == 0) {
+          await UserStore.to.saveProfile(result.data!);
+          UserStore.to.printTokenValue();
+          EasyLoading.dismiss();
+          await Get.offAllNamed(AppRoutes.Message);
+        } else {
+          EasyLoading.dismiss();
+          toastInfo(msg: "Invalid result value");
+        }
+      } else {
+        EasyLoading.dismiss();
+        toastInfo(msg: "Result is null");
+      }
+    } catch (error) {
       EasyLoading.dismiss();
       toastInfo(msg: "Internet error");
     }
-    Get.offAllNamed(AppRoutes.Message);
-    developer.log('================> dang nhap thu <================');
   }
 }

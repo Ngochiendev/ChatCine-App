@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBN-nZzvWkMwJVypFJFObwEytbPOmmnR24',
-    appId: '1:979667025150:android:123c6904e84e2cc0fe39af',
+    appId: '1:979667025150:android:7ca12c3148269253fe39af',
     messagingSenderId: '979667025150',
     projectId: 'chatcine-890d1',
     storageBucket: 'chatcine-890d1.appspot.com',
@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '979667025150',
     projectId: 'chatcine-890d1',
     storageBucket: 'chatcine-890d1.appspot.com',
+    androidClientId: '979667025150-iau66mbrkg847a6ulfjrrdv677btlinq.apps.googleusercontent.com',
     iosClientId: '979667025150-hr19si0dgb63amg2lt32cgj39al0cibl.apps.googleusercontent.com',
     iosBundleId: 'com.example.chatcine',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '979667025150',
     projectId: 'chatcine-890d1',
     storageBucket: 'chatcine-890d1.appspot.com',
+    androidClientId: '979667025150-iau66mbrkg847a6ulfjrrdv677btlinq.apps.googleusercontent.com',
     iosClientId: '979667025150-hr19si0dgb63amg2lt32cgj39al0cibl.apps.googleusercontent.com',
     iosBundleId: 'com.example.chatcine',
   );

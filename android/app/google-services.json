@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:979667025150:android:123c6904e84e2cc0fe39af",
+        "mobilesdk_app_id": "1:979667025150:android:7ca12c3148269253fe39af",
         "android_client_info": {
           "package_name": "com.example.chatcine"
         }
       },
       "oauth_client": [
         {
-          "client_id": "979667025150-9m1kiocavc9tu7au8qc6hs246m8ajj0o.apps.googleusercontent.com",
+          "client_id": "979667025150-t8o6h4b63im0rnladv4et94bvedm5h83.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

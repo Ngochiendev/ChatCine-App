@@ -23,6 +23,7 @@ class AppColors {
   static const Color primaryThreeElementText = Color.fromARGB(255, 99, 99, 99);
   //状态
   static const Color primaryElementStatus = Color.fromARGB(255, 88, 174, 127);
+  static const Color secondElementStatus = Color.fromARGB(255, 211, 216, 213);
 
   static const Color primaryElementBg = Color.fromARGB(255, 238, 121, 99);
 

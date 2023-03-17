@@ -1,5 +1,7 @@
 import 'package:chatcine/common/middlewares/middlewares.dart';
 import 'package:chatcine/pages/contactScreen/index.dart';
+import 'package:chatcine/pages/messageScreen/chatScreen/index.dart';
+import 'package:chatcine/pages/messageScreen/voicecallScreen/index.dart';
 import 'package:chatcine/pages/profileScreen/index.dart';
 import 'package:chatcine/pages/signinScreen/index.dart';
 import 'package:chatcine/pages/messageScreen/index.dart';
@@ -35,7 +37,7 @@ class AppPages {
     //     RouteAuthMiddleware(priority: 1),
     //   ],
     // ),
-    // // 最新路由
+    // 最新路由
     // GetPage(name: AppRoutes.EmailLogin, page: () => EmailLoginPage(), binding: EmailLoginBinding()),
     // GetPage(name: AppRoutes.Register, page: () => RegisterPage(), binding: RegisterBinding()),
     // GetPage(name: AppRoutes.Forgot, page: () => ForgotPage(), binding: ForgotBinding()),
@@ -43,30 +45,39 @@ class AppPages {
     // GetPage(name: AppRoutes.SendCode, page: () => SendCodePage(), binding: SendCodeBinding()),
     // 首页
     GetPage(
-        name: AppRoutes.Contact,
-        page: () => const ContactPages(),
-        binding: ContactBindings()),
+      name: AppRoutes.Contact,
+      page: () => const ContactPages(),
+      binding: ContactBindings(),
+    ),
+
     //消息
 
     GetPage(
       name: AppRoutes.Message,
       page: () => const MessagePages(),
       binding: MessageBindings(),
-      middlewares: [
-        RouteAuthMiddleware(priority: 1),
-      ],
     ),
 
     // profile
     GetPage(
-        name: AppRoutes.Profile,
-        page: () => const ProfilePages(),
-        binding: ProfileBindings()),
-    // //聊天详情
-    // GetPage(name: AppRoutes.Chat, page: () => ChatPage(), binding: ChatBinding()),
+      name: AppRoutes.Profile,
+      page: () => const ProfilePages(),
+      binding: ProfileBindings(),
+    ),
+
+    // 聊天详情
+    GetPage(
+      name: AppRoutes.Chat,
+      page: () => const ChatPages(),
+      binding: ChatBindings(),
+    ),
 
     // GetPage(name: AppRoutes.Photoimgview, page: () => PhotoImgViewPage(), binding: PhotoImgViewBinding()),
-    // GetPage(name: AppRoutes.VoiceCall, page: () => VoiceCallViewPage(), binding: VoiceCallViewBinding()),
+    GetPage(
+      name: AppRoutes.VoiceCall,
+      page: () => const VoiceCallPages(),
+      binding: VoiceCallBindings(),
+    ),
     // GetPage(name: AppRoutes.VideoCall, page: () => VideoCallPage(), binding: VideoCallBinding()),
   ];
 }

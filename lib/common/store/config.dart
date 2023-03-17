@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 
 class ConfigStore extends GetxController {
-  static ConfigStore get to => Get.find();
+  static ConfigStore get to => Get.put(ConfigStore());
 
   bool isFirstOpen = false;
   bool isCallVocie = false;
@@ -22,7 +22,7 @@ class ConfigStore extends GetxController {
   void onInit() {
     super.onInit();
 
-    ///  isFirstOpen = StorageService.to.getBool(STORAGE_DEVICE_FIRST_OPEN_KEY);
+    isFirstOpen = StorageService.to.getBool(STORAGE_DEVICE_FIRST_OPEN_KEY);
   }
 
   Future<void> getPlatform() async {

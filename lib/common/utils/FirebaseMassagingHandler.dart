@@ -6,6 +6,7 @@ import 'package:chatcine/common/entities/entities.dart';
 import 'package:chatcine/common/routes/names.dart';
 import 'package:chatcine/common/store/store.dart';
 import 'package:chatcine/common/values/values.dart';
+import 'package:chatcine/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class FirebaseMassagingHandler {
-  FirebaseMassagingHandler._();
+class FirebaseMessagingHandler {
+  FirebaseMessagingHandler._();
   static AndroidNotificationChannel channel_call =
       const AndroidNotificationChannel(
     'com.dbestech.chatty.call', // id
@@ -89,7 +90,7 @@ class FirebaseMassagingHandler {
     if (message.data != null && message.data["call_type"] != null) {
       //  ////1. voice 2. video 3. text, 4.cancel
       if (message.data["call_type"] == "voice") {
-        //  FirebaseMassagingHandler.flutterLocalNotificationsPlugin.cancelAll();
+        //  FirebaseMessagingHandler.flutterLocalNotificationsPlugin.cancelAll();
         var data = message.data;
         var to_token = data["token"];
         var to_name = data["name"];
@@ -124,7 +125,7 @@ class FirebaseMassagingHandler {
                               if (Get.isSnackbarOpen) {
                                 Get.closeAllSnackbars();
                               }
-                              FirebaseMassagingHandler._sendNotifications(
+                              FirebaseMessagingHandler._sendNotifications(
                                   "cancel",
                                   to_token,
                                   to_avatar,
@@ -172,7 +173,7 @@ class FirebaseMassagingHandler {
                       ))));
         }
       } else if (message.data["call_type"] == "video") {
-        //    FirebaseMassagingHandler.flutterLocalNotificationsPlugin.cancelAll();
+        //    FirebaseMessagingHandler.flutterLocalNotificationsPlugin.cancelAll();
         //  ////1. voice 2. video 3. text, 4.cancel
         var data = message.data;
         var to_token = data["token"];
@@ -209,7 +210,7 @@ class FirebaseMassagingHandler {
                               if (Get.isSnackbarOpen) {
                                 Get.closeAllSnackbars();
                               }
-                              FirebaseMassagingHandler._sendNotifications(
+                              FirebaseMessagingHandler._sendNotifications(
                                   "cancel",
                                   to_token,
                                   to_avatar,
@@ -257,7 +258,7 @@ class FirebaseMassagingHandler {
                       ))));
         }
       } else if (message.data["call_type"] == "cancel") {
-        FirebaseMassagingHandler.flutterLocalNotificationsPlugin.cancelAll();
+        FirebaseMessagingHandler.flutterLocalNotificationsPlugin.cancelAll();
 
         if (Get.isSnackbarOpen) {
           Get.closeAllSnackbars();
@@ -327,44 +328,39 @@ class FirebaseMassagingHandler {
     }
     // PlascoRequests().initReport();
   }
-/*
+
   @pragma('vm:entry-point')
   static Future<void> firebaseMessagingBackground(RemoteMessage message) async {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     print("message data: ${message.data}");
     print("message data: ${message}");
     print("message data: ${message.notification}");
 
-    if(message!=null){
-      if(message.data!=null && message.data["call_type"]!=null) {
-
-        if(message.data["call_type"]=="cancel"){
-            FirebaseMassagingHandler.flutterLocalNotificationsPlugin.cancelAll();
+    if (message != null) {
+      if (message.data != null && message.data["call_type"] != null) {
+        if (message.data["call_type"] == "cancel") {
+          FirebaseMessagingHandler.flutterLocalNotificationsPlugin.cancelAll();
           //  await setCallVocieOrVideo(false);
-            var _prefs = await SharedPreferences.getInstance();
-            await _prefs.setString("CallVocieOrVideo", "");
+          var _prefs = await SharedPreferences.getInstance();
+          await _prefs.setString("CallVocieOrVideo", "");
         }
-        if(message.data["call_type"]=="voice" || message.data["call_type"]=="video"){
-
+        if (message.data["call_type"] == "voice" ||
+            message.data["call_type"] == "video") {
           var data = {
-            "to_token":message.data["token"],
-            "to_name":message.data["name"],
-            "to_avatar":message.data["avatar"],
-            "doc_id":message.data["doc_id"]??"",
-            "call_type":message.data["call_type"],
-            "expire_time":DateTime.now().toString(),
+            "to_token": message.data["token"],
+            "to_name": message.data["name"],
+            "to_avatar": message.data["avatar"],
+            "doc_id": message.data["doc_id"] ?? "",
+            "call_type": message.data["call_type"],
+            "expire_time": DateTime.now().toString(),
           };
           print(data);
           var _prefs = await SharedPreferences.getInstance();
           await _prefs.setString("CallVocieOrVideo", jsonEncode(data));
         }
-
-
       }
-
-
-
     }
-
-  }*/
+  }
 }

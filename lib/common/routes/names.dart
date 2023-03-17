@@ -21,5 +21,4 @@ class AppRoutes {
 
   static const VoiceCall = '/voicecall';
   static const VideoCall = '/videocall';
-
 }

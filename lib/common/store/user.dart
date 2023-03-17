@@ -38,6 +38,10 @@ class UserStore extends GetxController {
     token = value;
   }
 
+  void printTokenValue() {
+    print(token); // In giá trị của biến token ra
+  }
+
   // get profile
   Future<String> getProfile() async {
     if (token.isEmpty) return "";
