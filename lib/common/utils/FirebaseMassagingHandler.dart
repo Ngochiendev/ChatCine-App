@@ -19,8 +19,8 @@ class FirebaseMessagingHandler {
   FirebaseMessagingHandler._();
   static AndroidNotificationChannel channel_call =
       const AndroidNotificationChannel(
-    'com.dbestech.chatty.call', // id
-    'chatty_call', // title
+    'com.example.chatcine.messages', // id
+    'chatcine_call', // title ?
     importance: Importance.max,
     enableLights: true,
     playSound: true,
@@ -28,8 +28,8 @@ class FirebaseMessagingHandler {
   );
   static AndroidNotificationChannel channel_message =
       const AndroidNotificationChannel(
-    'com.dbestech.chatty.message', // id
-    'chatty_message', // title
+    'com.example.chatcine.messages', // id
+    'chatcine_message', // title ?
     importance: Importance.defaultImportance,
     enableLights: true,
     playSound: true,
@@ -42,7 +42,7 @@ class FirebaseMessagingHandler {
   static Future<void> config() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     try {
-      RemoteMessage newMessage = RemoteMessage();
+      RemoteMessage newMessage = const RemoteMessage();
       await messaging.requestPermission(
         sound: true,
         badge: true,
@@ -60,8 +60,8 @@ class FirebaseMessagingHandler {
         print(initialMessage);
       }
       var initializationSettingsAndroid =
-          AndroidInitializationSettings("ic_launcher");
-      var darwinInitializationSettings = DarwinInitializationSettings();
+          AndroidInitializationSettings('@mipmap/ic_launcher');
+      var darwinInitializationSettings = const DarwinInitializationSettings();
       var initializationSettings = InitializationSettings(
           android: initializationSettingsAndroid,
           iOS: darwinInitializationSettings);
@@ -111,7 +111,7 @@ class FirebaseMessagingHandler {
               ),
               "${to_name}",
               "Voice call",
-              duration: Duration(seconds: 30),
+              duration: const Duration(seconds: 30),
               isDismissible: false,
               mainButton: TextButton(
                   onPressed: () {},
@@ -196,7 +196,7 @@ class FirebaseMessagingHandler {
               ),
               "${to_name}",
               "Video call",
-              duration: Duration(seconds: 30),
+              duration: const Duration(seconds: 30),
               isDismissible: false,
               mainButton: TextButton(
                   onPressed: () {},
@@ -271,6 +271,7 @@ class FirebaseMessagingHandler {
 
         var _prefs = await SharedPreferences.getInstance();
         await _prefs.setString("CallVocieOrVideo", "");
+        print('====>>>cancel');
       }
     }
   }
