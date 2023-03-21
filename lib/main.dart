@@ -1,3 +1,4 @@
+import 'package:chatcine/common/middlewares/middlewares.dart';
 import 'package:chatcine/common/routes/routes.dart';
 import 'package:chatcine/common/style/style.dart';
 import 'package:chatcine/common/utils/FirebaseMassagingHandler.dart';
@@ -12,7 +13,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   await Global.init();
   runApp(const MyApp());
-  firebasechatInit().whenComplete(() => FirebaseMessagingHandler.config());
+  firebasechatInit().whenComplete(() {
+    FirebaseMessagingHandler.config();
+  });
 }
 
 Future firebasechatInit() async {
@@ -23,11 +26,15 @@ Future firebasechatInit() async {
     FirebaseMessagingHandler.flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()!
-        .createNotificationChannel(FirebaseMessagingHandler.channel_call);
+        .createNotificationChannel(
+          FirebaseMessagingHandler.channel_call,
+        );
     FirebaseMessagingHandler.flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()!
-        .createNotificationChannel(FirebaseMessagingHandler.channel_message);
+        .createNotificationChannel(
+          FirebaseMessagingHandler.channel_message,
+        );
   }
 }
 

@@ -57,6 +57,7 @@ class UserStore extends GetxController {
     StorageService.to.setString(STORAGE_USER_PROFILE_KEY, jsonEncode(profile));
     _profile(profile);
     setToken(profile.access_token!);
+    print(profile.name!);
   }
 
   // logout

@@ -21,7 +21,7 @@ class BaseResponseEntity {
     "counts": code ,
     "msg": msg ,
     "items": data,
-  };   
+  };
 }
 
 class BindFcmTokenRequestEntity {
